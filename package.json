@@ -1,0 +1,19 @@
+{
+  "name": "m17api",
+  "version": "0.0.1",
+  "description": "Api Rest - Modulo 17",
+  "main": "app",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/benitin/m17api.git"
+  },
+  "author": "Benito Vargas Cuellar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/benitin/m17api/issues"
+  },
+  "homepage": "https://github.com/benitin/m17api#readme"
+}
