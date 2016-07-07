@@ -27,6 +27,21 @@ exports.login = function(req, res){
 		})
 }
 
+exports.pedidos = function(req, res){
+	iomsg = {
+		type	: 'pedidos',
+		data	: req.params.idCliente,
+		res		: null
+	}
+	console.log('idCliente:'+req.params.idCliente)
+	db.list('pedido', 'idCliente=' + req.params.idCliente
+		,function(rows){
+			res.status(200).json(rows)
+			iomsg.res = rows
+			global.serverEmitter.emit('emit', iomsg)
+		})
+}
+
 /*
  Test
 exports.test = function (req, res){

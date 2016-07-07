@@ -31,3 +31,14 @@ insert into PuntoEntrega values
 (0, 1, 'CDP', 'C/Mexico, 1er Anillo', -17.7785775,-63.1899428),
 (0, 2, 'Oficina Central', 'Calle Nuflo de Chavez', -17.7859889,-63.1804854),
 (0, 3, 'Oficina Central', 'Calle Colon S/N', -17.7849733,-63.1844612);
+
+create table Pedido(
+	id 			int   		not null auto_increment,
+	idCliente	int 		not null,
+	idPuntoEntrega int 		not null,
+	fechaLimite	datetime 	not null,
+	latitud     decimal(14,10) not null,
+	longitud    decimal(14,10) not null,
+	estado		int 		   not null,
+	primary key(id)
+)

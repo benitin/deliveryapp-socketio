@@ -23,8 +23,8 @@ exports.findOne = function(name, condition, callback){
 		})
 }
 
-exports.list = function(name, callback){
-	knex.select('*').from(name)
+exports.list = function(name, condition, callback){
+	knex.select('*').from(name).where(knex.raw(condition))
 		.then(function(row){
 			console.log(row)
 			callback(row)

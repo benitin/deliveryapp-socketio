@@ -6,6 +6,7 @@ var bodyParser= require('body-parser')
 
 var config  = require('./config')
 var cliente = require('./controllers/cliente')
+var pedido = require('./controllers/pedido')
 
 app.use(bodyParser.urlencoded({ extended: true}))
 app.use(bodyParser.json())
@@ -22,8 +23,17 @@ router.get('/', function(req, res){
 	res.status(200).jsonp({message:'API Rest - With Node JS - Event Driven Architecture'})
 })
 
+// Cliente
 router.route('/login')
 	.post(cliente.login)
+router.route('/cliente/pedidos/:idCliente')
+    .get(cliente.pedidos)
+
+// Pedido
+router.route('/pedido')
+    .post(pedido.save)
+router.route('/pedido/:estado')
+    .get(pedido.list)
 
 /* Test
 router.route('/test')
