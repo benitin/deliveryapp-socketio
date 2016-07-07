@@ -5,42 +5,32 @@ var bodyParser= require('body-parser')
 
 
 var config  = require('./config')
+var cliente = require('./controllers/cliente')
 
 app.use(bodyParser.urlencoded({ extended: true}))
 app.use(bodyParser.json())
 
 // Code
-/*
----schema.sql
 
-create table test(
-	id    int auto_increment,
-	fecha datetime not null,
-	primary key(id)
-)
-
-*/
+app.get('/*', function(req, res, next){ 
+  res.setHeader('Last-Modified', (new Date()).toUTCString());
+  next(); 
+});
 var router = express.Router()
 
 router.get('/', function(req, res){
 	res.status(200).jsonp({message:'API Rest - With Node JS - Event Driven Architecture'})
 })
 
-router.route('/test')
-	.get(function(req, res){
-		knex.select('*').from('test')
-		.map(function(row){
-			res.status(200).json(row)
-			console.log(row)
-		})
-	})//get(usuario.list)
-	.post(function(req, res){
-		knex('test').insert({id:0,fecha:new Date()}).map(function(row){
-			res.status(200).json(row)
-			console.log(row)
-		})
-	})//post(usuario.save)
+router.route('/login')
+	.post(cliente.login)
 
+/* Test
+router.route('/test')
+ 	.get(cliente.testList)
+	.post(cliente.test)*/
+
+	
 // Init Listening
 app.use('/api', router)
 app.disable('etag')
@@ -56,9 +46,9 @@ var io     = require('socket.io')(http),
  global.serverEmitter = new events.EventEmitter()
 // RTA
 io.on('connection', function (socket) {
-    socket.on('chat message', function(msg){
+    /*socket.on('chat message', function(msg){
         io.emit('chat message', msg)
-    })
+    })*/
     global.serverEmitter.on("emit",function(data){
     	socket.emit("emit",data)
     })
