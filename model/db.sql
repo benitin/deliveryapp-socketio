@@ -32,13 +32,59 @@ insert into PuntoEntrega values
 (0, 2, 'Oficina Central', 'Calle Nuflo de Chavez', -17.7859889,-63.1804854),
 (0, 3, 'Oficina Central', 'Calle Colon S/N', -17.7849733,-63.1844612);
 
-create table Pedido(
-	id 			int   		not null auto_increment,
-	idCliente	int 		not null,
-	idPuntoEntrega int 		not null,
-	fechaLimite	datetime 	not null,
-	latitud     decimal(14,10) not null,
-	longitud    decimal(14,10) not null,
-	estado		int 		   not null,
+create table CategoriaProducto(
+	id  		int 		not null auto_increment,
+	idCategoria int 		not null,
+	nombre		varchar(50) not null,
+	nivel		smallint    not null,
 	primary key(id)
-)
+);
+
+create table Producto(
+	id 			int 		  not null auto_increment,
+	idCategoria int 		  not null,
+	descripcion varchar(50)   not null,
+	precio 		decimal(14,7) not null,
+	stock		decimal(14,7) not null,
+	costo		decimal(14,7) not null,
+	primary key(id)
+);
+
+create table Pedido(
+	id 			int   			not null auto_increment,
+	idCliente	int 			not null,
+	idPuntoEntrega int 			not null,
+	fechaLimite	datetime 		not null,
+	latitud     decimal(14,10)  not null,
+	longitud    decimal(14,10)  not null,
+	idEstado	int 		    not null,
+	primary key(id)
+);
+
+create table DetallePedido(
+	id 			int   not null auto_increment,
+	idPedido	int   not null,
+	idProducto  int   not null,
+	cantidad	int   not null,
+	precioUnitario decimal(14,7) not null,
+	primary key(id)
+);
+
+create table Estado(
+	id 			int 		not null auto_increment,
+	estado 		int 		not null,
+	descripcion varchar(50) not null,
+	primary key(id)
+);
+
+create table EstadoPedido(
+	id 			int 			not null auto_increment,
+	idPedido	int 			not null,
+	idEstado	int 			not null,
+	horaInicio  datetime		not null,
+	horaFin		datetime		not null,
+	descripcion varchar(100)    null,
+	primary key(id)
+);
+
+
