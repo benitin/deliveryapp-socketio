@@ -50,16 +50,32 @@ create table Producto(
 	primary key(id)
 );
 
+insert into Producto values
+(0, 1, '1 Entero Pollo Broasted', 100, 150, 15),
+(0, 1, '1/2 Pollo Broasted', 50, 150, 15),
+(0, 1, '1/4 Pollo Broasted', 25, 150, 15),
+(0, 1, '1/8 Pollo Brasa', 15, 150, 15),
+
+(0, 1, '1 Entero Pollo Brasa', 100, 150, 15),
+(0, 1, '1/2 Pollo Brasa', 50, 150, 15),
+(0, 1, '1/4 Pollo Brasa', 25, 150, 15),
+(0, 1, '1/8 Pollo Brasa', 15, 150, 15);
+
+
 create table Pedido(
 	id 			int   			not null auto_increment,
 	idCliente	int 			not null,
 	idPuntoEntrega int 			not null,
+	idProducto     int          not null,
 	fechaLimite	datetime 		not null,
 	latitud     decimal(14,10)  not null,
 	longitud    decimal(14,10)  not null,
 	idEstado	int 		    not null,
+	cantidad    int             not null,
+	precio      decimal(14,10)  not null,
 	primary key(id)
 );
+
 
 create table DetallePedido(
 	id 			int   not null auto_increment,

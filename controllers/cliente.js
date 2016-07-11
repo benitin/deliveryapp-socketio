@@ -42,6 +42,13 @@ exports.pedidos = function(req, res){
 		})
 }
 
+exports.puntosentrega = function(req, res){
+	db.list('puntoentrega','idCliente='+req.params.idCliente
+		,function(puntos){
+			res.status(200).json(puntos)
+		})
+}
+
 /*
  Test
 exports.test = function (req, res){

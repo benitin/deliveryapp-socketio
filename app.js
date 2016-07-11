@@ -7,6 +7,7 @@ var bodyParser= require('body-parser')
 var config  = require('./config')
 var cliente = require('./controllers/cliente')
 var pedido = require('./controllers/pedido')
+var producto = require('./controllers/producto')
 
 app.use(bodyParser.urlencoded({ extended: true}))
 app.use(bodyParser.json())
@@ -28,12 +29,17 @@ router.route('/login')
 	.post(cliente.login)
 router.route('/cliente/pedidos/:idCliente')
     .get(cliente.pedidos)
+router.route('/cliente/puntosentrega/:idCliente')
+    .get(cliente.puntosentrega)
 
 // Pedido
 router.route('/pedido')
     .post(pedido.save)
 router.route('/pedido/:estado')
     .get(pedido.list)
+// Producto    
+router.route('/producto')
+    .get(producto.list)
 
 /* Test
 router.route('/test')

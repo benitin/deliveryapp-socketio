@@ -18,7 +18,7 @@ exports.save = function(name, entity, callback){
 exports.findOne = function(name, condition, callback){
 	knex.select('*').from(name).where(knex.raw(condition))
 		.then(function(entity){
-			console.log(entity)
+			//console.log(entity)
 			callback(entity)
 		})
 }
@@ -26,7 +26,7 @@ exports.findOne = function(name, condition, callback){
 exports.list = function(name, condition, callback){
 	knex.select('*').from(name).where(knex.raw(condition))
 		.then(function(row){
-			console.log(row)
+			//console.log(row)
 			callback(row)
 		})
 

@@ -7,19 +7,22 @@ exports.save = function (req, res) {
 		id				:  0,
 		idCliente		: req.body.idCliente,
 		idPuntoEntrega	: req.body.idPuntoEntrega,
-		fechaLiminte	: req.body.fechaLiminte,
+		fechaLimite		: req.body.fechaLimite,
 		latitud			: req.body.latitud,
 		longitud		: req.body.longitud,
-		estado			: 1
+		idProducto      : req.body.idProducto,
+		idEstado		: 1
 	}
 	iomsg = {
 		type : "pedido",
 		data : pedido,
 		res	 :null
 	}
+	console.log("pedido",iomsg)
 
 	db.save(entityName, pedido, function(row){
-		res.status(200).json(row)
+		console.log('result pedido:', row)
+		res.status(200).json(row[0])
 		iomsg.res = row
 		global.serverEmitter.emit("emit", iomsg)
 		console.log('emit:', iomsg)
