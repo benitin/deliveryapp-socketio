@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
+-- version 4.5.0.2
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-07-2016 a las 00:00:11
--- Versión del servidor: 10.1.8-MariaDB
--- Versión de PHP: 5.5.30
+-- Tiempo de generación: 11-07-2016 a las 07:06:45
+-- Versión del servidor: 10.0.17-MariaDB
+-- Versión de PHP: 5.6.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -109,11 +109,29 @@ CREATE TABLE `pedido` (
   `id` int(11) NOT NULL,
   `idCliente` int(11) NOT NULL,
   `idPuntoEntrega` int(11) NOT NULL,
+  `idProducto` int(11) NOT NULL,
   `fechaLimite` datetime NOT NULL,
   `latitud` decimal(14,10) NOT NULL,
   `longitud` decimal(14,10) NOT NULL,
-  `idEstado` int(11) NOT NULL
+  `idEstado` int(11) NOT NULL,
+  `cantidad` int(11) NOT NULL,
+  `precio` decimal(14,10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `pedido`
+--
+
+INSERT INTO `pedido` (`id`, `idCliente`, `idPuntoEntrega`, `idProducto`, `fechaLimite`, `latitud`, `longitud`, `idEstado`, `cantidad`, `precio`) VALUES
+(1, 1, 1, 1, '0000-00-00 00:00:00', '0.0000000000', '0.0000000000', 1, 0, '0.0000000000'),
+(2, 1, 1, 1, '0000-00-00 00:00:00', '0.0000000000', '0.0000000000', 1, 0, '0.0000000000'),
+(3, 1, 1, 1, '0000-00-00 00:00:00', '0.0000000000', '0.0000000000', 1, 0, '0.0000000000'),
+(4, 1, 2, 2, '2016-07-11 00:00:00', '0.0000000000', '0.0000000000', 1, 0, '0.0000000000'),
+(5, 1, 2, 3, '2016-07-11 00:00:00', '0.0000000000', '0.0000000000', 1, 0, '0.0000000000'),
+(6, 1, 2, 5, '2016-07-11 00:00:00', '0.0000000000', '0.0000000000', 1, 0, '0.0000000000'),
+(7, 1, 1, 2, '2016-07-11 00:00:00', '0.0000000000', '0.0000000000', 1, 0, '0.0000000000'),
+(8, 1, 1, 1, '2016-07-11 00:00:00', '0.0000000000', '0.0000000000', 1, 0, '0.0000000000'),
+(9, 1, 1, 3, '2016-07-12 00:00:00', '0.0000000000', '0.0000000000', 1, 0, '0.0000000000');
 
 -- --------------------------------------------------------
 
@@ -129,6 +147,20 @@ CREATE TABLE `producto` (
   `stock` decimal(14,7) NOT NULL,
   `costo` decimal(14,7) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `producto`
+--
+
+INSERT INTO `producto` (`id`, `idCategoria`, `descripcion`, `precio`, `stock`, `costo`) VALUES
+(1, 1, '1 Entero Pollo Broasted', '100.0000000', '150.0000000', '15.0000000'),
+(2, 1, '1/2 Pollo Broasted', '50.0000000', '150.0000000', '15.0000000'),
+(3, 1, '1/4 Pollo Broasted', '25.0000000', '150.0000000', '15.0000000'),
+(4, 1, '1/8 Pollo Brasa', '15.0000000', '150.0000000', '15.0000000'),
+(5, 1, '1 Entero Pollo Brasa', '100.0000000', '150.0000000', '15.0000000'),
+(6, 1, '1/2 Pollo Brasa', '50.0000000', '150.0000000', '15.0000000'),
+(7, 1, '1/4 Pollo Brasa', '25.0000000', '150.0000000', '15.0000000'),
+(8, 1, '1/8 Pollo Brasa', '15.0000000', '150.0000000', '15.0000000');
 
 -- --------------------------------------------------------
 
@@ -270,12 +302,12 @@ ALTER TABLE `estadopedido`
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT de la tabla `puntoentrega`
 --

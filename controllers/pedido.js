@@ -13,7 +13,6 @@ exports.save = function (req, res) {
 		cliente 	 : carrito.cliente,
 		res	 :null
 	}
-	//res.status(200).json(0)
 	var pedido = {
 		id				:  0,
 		idCliente		: carrito.pedido.idCliente,
@@ -30,14 +29,13 @@ exports.save = function (req, res) {
 	//console.log("pedido",iomsg)
 	var cantidad = 0
 
-	console.log("detalle",carrito.pedido.detalle)
-
 	db.save(entityName, pedido, function(row){
 		console.log('result pedido:', row)
 		idPedido = row[0]
 		if(idPedido>0){
 			console.log("guardando detalle",idPedido)
-			for(item in carrito.pedido.detalle){
+			for(key in carrito.pedido.detalle){
+				item = carrito.pedido.detalle[key] 
 				item.idPedido = idPedido
 				console.log('detalle', item)
 				db.save('detallepedido', item, function(row){
@@ -46,9 +44,9 @@ exports.save = function (req, res) {
 			}
 			res.status(200).json(idPedido)
 			iomsg.res = cantidad
-			/*global.serverEmitter.emit("emit", iomsg)
+			global.serverEmitter.emit("emit", iomsg)
 			console.log('emit:', iomsg)
-			*/
+			
 			//if(cantidad==carrito.detalle.length){}
 		}
 		
